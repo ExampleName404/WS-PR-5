@@ -1,0 +1,38 @@
+@model Student?
+@{
+    ViewData["Title"] = "Студент по ID";
+}
+
+<h2>Поиск студента по ID</h2>
+
+<form asp-action="Details" method="get" class="row g-2 mb-3">
+    <div class="col-auto">
+        <input type="number" name="id" min="1" value="@ViewData["SearchId"]" class="form-control" placeholder="ID студента" required />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Найти</button>
+    </div>
+</form>
+
+<partial name="_Messages" />
+
+@if (Model != null)
+{
+    <div class="card mb-3" style="max-width: 500px">
+        <div class="card-header">Студент #@Model.Id</div>
+        <div class="card-body">
+            <dl class="row mb-0">
+                <dt class="col-4">ФИО</dt>
+                <dd class="col-8">@Model.FullName</dd>
+                <dt class="col-4">Группа</dt>
+                <dd class="col-8">@Model.Group</dd>
+                <dt class="col-4">Курс</dt>
+                <dd class="col-8">@Model.Course</dd>
+                <dt class="col-4">Email</dt>
+                <dd class="col-8">@Model.Email</dd>
+            </dl>
+        </div>
+    </div>
+}
+
+<a asp-action="Index">Вернуться к списку</a>
